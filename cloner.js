@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import {
     checkConfigFileExists,
     GENERATE_CONFIG_FILE_COMMAND,

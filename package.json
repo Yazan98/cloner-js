@@ -1,6 +1,6 @@
 {
-  "name": "cloner",
-  "version": "1.0.0",
+  "name": "cloner-js",
+  "version": "1.0.1",
   "description": "Command Line Interface To Clone Github Projects One Time A Big List of Projects One Time",
   "main": "cloner.js",
   "scripts": {
@@ -11,9 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/Yazan98/cloner-js.git"
   },
-  "bin": {
-    "cloner": "cloner.js"
-  },
+  "bin": "cloner.js",
   "type": "module",
   "keywords": [
     "git",
