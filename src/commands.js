@@ -1,4 +1,5 @@
 import fs from 'fs';
+import {startCloneRepositories} from "./executer.js";
 
 /**
  * Export Available Commands For This CLI
@@ -7,19 +8,33 @@ import fs from 'fs';
  */
 export const HELP_COMMAND = "-h";
 export const GENERATE_CONFIG_FILE_COMMAND = "-g";
+export const CLONER_CONFIG_FILE_CHECK_COMMAND = "-k";
+export const CLONE_REPOS_COMMAND = "-c";
 
 /**
  * Json Configuration File Props
  */
 export const CONFIG_JSON_FILE = "cloner.json";
+export const PROJECTS_FILE_NAME = "Projects";
 export const GITHUB_TOKEN_KEY = "github_token";
 export const GITHUB_REPOS_LIST_KEY = "repos";
 export const GITHUB_USERS_LIST_KEY = "users";
 export const GITHUB_ORGS_LIST_KEY = "orgs";
+export const GITHUB_USER_KEY = "user";
 
 export function getHelpCommands() {
     console.log("Command [-g] To Generate Json File For Your Cloned Repositories To Start Cloning")
     console.log("Command [-c] To Clone All Repos Inside Configuration Json File")
+    console.log("Command [-k] To Check If The Cloner File Exists Or Not")
+}
+
+export function checkConfigFileExists(workingPath) {
+    try {
+        return fs.existsSync(`${workingPath}/${CONFIG_JSON_FILE}`);
+    } catch (error) {
+        console.log("[ERROR] Something Error : " + error)
+        return false;
+    }
 }
 
 export function generateJsonConfigurationFile(workingPath) {
@@ -27,6 +42,7 @@ export function generateJsonConfigurationFile(workingPath) {
     try {
         const generatedFileContent = {
             "github_token": "",
+            "user": "",
             "repos": [],
             "users": [],
             "orgs": []
@@ -40,4 +56,17 @@ export function generateJsonConfigurationFile(workingPath) {
     } catch (exception) {
         console.log("[ERROR] Something Error : " + exception)
     }
+}
+
+export function startCloningRepositories(workingPath) {
+    if (!fs.existsSync(`${workingPath}/${PROJECTS_FILE_NAME}`)){
+        fs.mkdirSync(`${workingPath}/${PROJECTS_FILE_NAME}`);
+    }
+
+    if (checkConfigFileExists(workingPath)) {
+        startCloneRepositories(workingPath);
+    } else {
+        console.log("[DEBUG] Cloner Configuration Json File Not Found .. Please Generate Config File Before Start Cloner")
+    }
+
 }

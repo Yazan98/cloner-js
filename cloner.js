@@ -1,8 +1,11 @@
 import {
+    checkConfigFileExists,
     GENERATE_CONFIG_FILE_COMMAND,
+    CLONER_CONFIG_FILE_CHECK_COMMAND,
+    CLONE_REPOS_COMMAND,
     generateJsonConfigurationFile,
     getHelpCommands,
-    HELP_COMMAND
+    HELP_COMMAND, startCloningRepositories
 } from "./src/commands.js";
 
 export function init() {
@@ -32,7 +35,21 @@ function executeArguments(args) {
         } else if (args[i] === GENERATE_CONFIG_FILE_COMMAND) {
             generateJsonConfigurationFile(getCurrentWorkingPath())
             break;
+        } else if (args[i] === CLONER_CONFIG_FILE_CHECK_COMMAND) {
+            checkConfigFile();
+            break;
+        } else if (args[i] === CLONE_REPOS_COMMAND) {
+            startCloningRepositories(getCurrentWorkingPath());
+            break;
         }
+    }
+}
+
+function checkConfigFile() {
+    if (checkConfigFileExists(getCurrentWorkingPath())) {
+        console.log("[DEBUG] Cloner Configuration File Exists ... You Can Run Cloner To Clone Projects")
+    } else {
+        console.log("[DEBUG] Cloner Configuration File Not Exists ... You Can Run Cloner To Generate Config File")
     }
 }
 
