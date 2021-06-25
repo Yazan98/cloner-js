@@ -40,3 +40,5 @@ This File Contains Your Account Information
 2. If you want to Clone All Repos From Your Account (Public, Private) Add Username and Access Token
 3. If you want to Clone Repos From Random Users, Orgs Add Them in Repos List Like This (Yazan98/cloner-js)
 
+## Screenshot For Usage
+![Screenshot 2021-06-25 105448](https://user-images.githubusercontent.com/29167110/123390635-ca93c700-d5a3-11eb-8842-b464c7793bb3.jpg)
