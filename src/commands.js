@@ -16,11 +16,6 @@ export const CLONE_REPOS_COMMAND = "-c";
  */
 export const CONFIG_JSON_FILE = "cloner.json";
 export const PROJECTS_FILE_NAME = "Projects";
-export const GITHUB_TOKEN_KEY = "github_token";
-export const GITHUB_REPOS_LIST_KEY = "repos";
-export const GITHUB_USERS_LIST_KEY = "users";
-export const GITHUB_ORGS_LIST_KEY = "orgs";
-export const GITHUB_USER_KEY = "user";
 
 export function getHelpCommands() {
     console.log("Command [-g] To Generate Json File For Your Cloned Repositories To Start Cloning")
@@ -43,9 +38,7 @@ export function generateJsonConfigurationFile(workingPath) {
         const generatedFileContent = {
             "github_token": "",
             "user": "",
-            "repos": [],
-            "users": [],
-            "orgs": []
+            "repos": []
         };
 
         const jsonConfig = JSON.stringify(generatedFileContent, null, "\t")

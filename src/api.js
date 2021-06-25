@@ -18,6 +18,6 @@ export function getUrlRequestForUserRepositories(userName) {
     return `${GITHUB_USERS_KEY}/${userName}/${GITHUB_REPOS_KEY}`
 }
 
-export function getRepoRequestUrl(repo) {
-    return `${GITHUB_REPOS_KEY}/${repo}`
+export function getUrlRequestForUserAuthRepositories() {
+    return `user/repos?per_page=100&type=all&sort=updated`
 }
